@@ -21,6 +21,22 @@ Google Colab Link: [Open in Colab](https://colab.research.google.com/drive/1KKXX
 
 ---
 
+## 📌 Project 2: Web scrapper and website brochure maker
+
+### 🎯 Overview  
+This is my second project, where I built an **AI-powered website brochure maker**. The goal was to create a tool that takes user-provided link and create brochure by scrapping the website. This project serves as an **second step** in understanding how to implement LLMs effectively and craft useful prompts.  
+
+### 🔗 Try It Out  
+Google Colab Link: [Open in Colab](https://colab.research.google.com/drive/1ZzKx8X9bJo4nil67D9axQxY4b4MCyfq7?usp=sharing)  
+
+### 🛠 Features  
+✅ Does basic scrapping of a given website  
+✅ Figure out relevent links for the website  
+✅ Go throw all the relevent links and create a text based **brochure** for that website.  
+✅ Best use case is for companies that want to create their personalised brochure.
+
+---
+
 ## 📅 Upcoming Projects  
 I will be adding more projects covering **advanced LLM applications**, **agentic reasoning**, **retrieval-augmented generation (RAG)**, and much more!  
 
