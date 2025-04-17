@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Chat Interface</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .chat-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+        }
+        
+        .chat-header {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            position: relative;
+        }
+        
+        .user-message {
+            background-color: #e6f2ff;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .bot-message {
+            background-color: #f0f0f0;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+            white-space: pre-wrap;
+        }
+        
+        .message-input {
+            display: flex;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        
+        #send-button {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        #send-button:hover {
+            background-color: #3a5985;
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 15px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #666;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+        
+        .dot:nth-child(1) { animation-delay: 0s; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .chat-selector {
+            margin-bottom: 15px;
+        }
+        
+        .create-chat-btn {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        #chat-select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Streaming Chat Demo</h1>
+    
+    <div class="chat-selector">
+        <label for="chat-select">Select chat:</label>
+        <select id="chat-select">
+            <!-- Will be populated dynamically -->
+        </select>
+        <button id="create-chat" class="create-chat-btn">Create New Chat</button>
+    </div>
+    
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat Assistant</h2>
+        </div>
+        <div class="chat-history" id="chat-history">
+            <!-- Messages will appear here -->
+        </div>
+        <div class="message-input">
+            <input type="text" id="user-input" placeholder="Type your message here..." />
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://127.0.0.1:8000/api-chat'; // Update this to match your Django backend URL
+        let currentChatId = null;
+        let isStreaming = false;
+        
+        // DOM elements
+        const chatHistory = document.getElementById('chat-history');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const chatSelect = document.getElementById('chat-select');
+        const createChatButton = document.getElementById('create-chat');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadChats();
+            
+            // Event listeners
+            sendButton.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+            createChatButton.addEventListener('click', createNewChat);
+            chatSelect.addEventListener('change', () => {
+                currentChatId = chatSelect.value;
+                loadChatHistory(currentChatId);
+            });
+        });
+        
+        // Load available chats
+        function loadChats() {
+            fetch(`${API_BASE_URL}/chats/`)
+                .then(response => response.json())
+                .then(data => {
+                    chatSelect.innerHTML = '';
+                    
+                    if (data.length === 0) {
+                        createNewChat();
+                        return;
+                    }
+                    
+                    data.forEach(chat => {
+                        const option = document.createElement('option');
+                        option.value = chat.id;
+                        option.textContent = `Chat #${chat.id}`;
+                        chatSelect.appendChild(option);
+                    });
+                    
+                    // Select first chat
+                    currentChatId = data[0].id;
+                    chatSelect.value = currentChatId;
+                    loadChatHistory(currentChatId);
+                })
+                .catch(error => {
+                    console.error('Error loading chats:', error);
+                });
+        }
+        
+        // Create a new chat
+        function createNewChat() {
+            fetch(`${API_BASE_URL}/chats/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title: `Chat ${new Date().toLocaleString()}` })
+            })
+            .then(response => response.json())
+            .then(chat => {
+                const option = document.createElement('option');
+                option.value = chat.id;
+                option.textContent = `Chat #${chat.id}`;
+                chatSelect.appendChild(option);
+                
+                // Select the new chat
+                currentChatId = chat.id;
+                chatSelect.value = currentChatId;
+                
+                // Clear chat history
+                chatHistory.innerHTML = '';
+            })
+            .catch(error => {
+                console.error('Error creating chat:', error);
+            });
+        }
+        
+        // Load chat history
+        function loadChatHistory(chatId) {
+            chatHistory.innerHTML = '';
+            
+            fetch(`${API_BASE_URL}/chats/${chatId}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(message => {
+                        addMessageToUI(message.role, message.content);
+                    });
+                    
+                    // Scroll to bottom
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Error loading chat history:', error);
+                });
+        }
+        
+        // Send a message
+        function sendMessage() {
+            const messageText = userInput.value.trim();
+            if (!messageText || isStreaming) return;
+            
+            // Add user message to UI
+            addMessageToUI('user', messageText);
+            
+            // Clear input
+            userInput.value = '';
+            
+            // Add loading indicator
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading';
+            loadingDiv.innerHTML = `
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            `;
+            chatHistory.appendChild(loadingDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+            
+            // Start streaming response
+            isStreaming = true;
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.className = 'message bot-message';
+            botMessageDiv.textContent = '';
+            
+            // Replace loading indicator with actual response container after a short delay
+            setTimeout(() => {
+                chatHistory.removeChild(loadingDiv);
+                chatHistory.appendChild(botMessageDiv);
+                
+                // Send request to streaming endpoint
+                fetch(`${API_BASE_URL}/chats/${currentChatId}/messages/stream/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: messageText
+                    })
+                }).then(response => {
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    
+                    function readStream() {
+                        reader.read().then(({ done, value }) => {
+                            if (done) {
+                                isStreaming = false;
+                                return;
+                            }
+                            
+                            const chunk = decoder.decode(value, { stream: true });
+                            const lines = chunk.split('\n\n');
+                            
+                            lines.forEach(line => {
+                                if (line.startsWith('data: ')) {
+                                    const data = JSON.parse(line.slice(6));
+                                    
+                                    if (data.token) {
+                                        botMessageDiv.textContent += data.token;
+                                        chatHistory.scrollTop = chatHistory.scrollHeight;
+                                    }
+                                    
+                                    if (data.done) {
+                                        isStreaming = false;
+                                    }
+                                }
+                            });
+                            
+                            // Continue reading stream
+                            if (!isStreaming) return;
+                            readStream();
+                        }).catch(error => {
+                            console.error('Error reading stream:', error);
+                            isStreaming = false;
+                        });
+                    }
+                    
+                    readStream();
+                }).catch(error => {
+                    console.error('Error sending message:', error);
+                    botMessageDiv.textContent = 'Sorry, there was an error processing your request.';
+                    isStreaming = false;
+                });
+            }, 1000);
+        }
+        
+        // Add a message to the UI
+        function addMessageToUI(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}-message`;
+            messageDiv.textContent = content;
+            chatHistory.appendChild(messageDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+    </script>
+</body>
+</html>

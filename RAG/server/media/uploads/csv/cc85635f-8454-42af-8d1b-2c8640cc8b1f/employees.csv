@@ -1,0 +1,101 @@
+employee_id,first_name,last_name,department,role,date_of_joining
+1,Jesse,Logan,Finance,Art gallery manager,2019-10-31
+2,Richard,Higgins,Finance,"Lecturer, further education",2020-10-05
+3,Rebecca,Zimmerman,Finance,IT trainer,2022-12-15
+4,Thomas,Steele,IT,"Teacher, special educational needs",2017-02-14
+5,Jesse,Sanchez,IT,Company secretary,2023-01-01
+6,Kim,Guerrero,IT,Health service manager,2022-07-19
+7,Teresa,Smith,Sales,Photographer,2016-12-12
+8,James,Evans,HR,Retail manager,2018-01-04
+9,Sheila,Tran,Sales,Human resources officer,2018-08-22
+10,Natalie,Nguyen,Marketing,"Nurse, children's",2017-10-03
+11,Teresa,Lopez,Sales,Graphic designer,2022-03-11
+12,Robert,Sloan,HR,"Engineer, structural",2018-11-05
+13,Jessica,Rivera,Finance,"Teacher, English as a foreign language",2018-08-09
+14,Austin,Black,HR,Tourism officer,2020-06-10
+15,Christopher,Cook,Sales,Research scientist (life sciences),2021-07-19
+16,Joshua,Jennings,Marketing,Editorial assistant,2019-10-17
+17,Katrina,Nichols,Marketing,IT consultant,2022-06-14
+18,Michael,Obrien,Sales,Environmental consultant,2025-02-19
+19,Pamela,Cruz,Marketing,Toxicologist,2022-10-02
+20,Jeremy,Wood,Finance,"Therapist, nutritional",2018-11-27
+21,Mark,Johnson,Finance,"Presenter, broadcasting",2023-12-28
+22,Jessica,Bishop,Sales,"Administrator, education",2017-04-04
+23,Katie,Ferguson,IT,Higher education lecturer,2020-01-08
+24,James,Young,Sales,Health promotion specialist,2022-11-16
+25,Matthew,Williams,Marketing,Adult guidance worker,2015-12-10
+26,Michelle,Stokes,HR,"Solicitor, Scotland",2025-01-05
+27,Jordan,Ortega,Finance,Health visitor,2020-03-05
+28,Tammy,Costa,Finance,Heritage manager,2018-05-18
+29,Shane,Mccoy,Marketing,"Runner, broadcasting/film/video",2015-08-21
+30,Michael,Brown,Finance,Electronics engineer,2017-09-22
+31,Stephen,Conway,IT,Editorial assistant,2017-12-07
+32,Frank,Butler,HR,Multimedia specialist,2023-07-12
+33,Sharon,Mitchell,HR,"Physicist, medical",2018-07-13
+34,Bethany,Howell,HR,Chief Financial Officer,2024-07-17
+35,Peter,Ryan,Marketing,"Research officer, trade union",2017-02-18
+36,Christina,Sparks,Marketing,Media buyer,2019-12-14
+37,Maria,Smith,IT,Radiation protection practitioner,2018-10-23
+38,Ann,James,Finance,"Administrator, sports",2023-12-10
+39,Cassandra,Hess,Marketing,Planning and development surveyor,2020-03-07
+40,Heather,Byrd,Marketing,Merchant navy officer,2021-10-01
+41,Tracy,Orr,Sales,"Designer, television/film set",2021-11-03
+42,Marcus,Kaiser,Finance,Retail manager,2016-02-13
+43,John,Cooper,Marketing,"Engineer, aeronautical",2022-06-20
+44,Kathryn,Morris,HR,Actor,2019-01-09
+45,Benjamin,Erickson,HR,Diagnostic radiographer,2015-10-17
+46,Bradley,Pennington,Marketing,"Education officer, museum",2015-07-23
+47,Amanda,Woods,Finance,Sports coach,2018-11-05
+48,Adam,Cabrera,HR,"Editor, commissioning",2020-09-20
+49,Eric,Peters,Marketing,Planning and development surveyor,2024-05-30
+50,Monica,Hopkins,IT,Financial adviser,2018-07-09
+51,Randy,Moore,HR,Conference centre manager,2017-04-16
+52,Jonathan,Anderson,Sales,Music therapist,2021-02-08
+53,Janice,Lambert,Finance,Research scientist (medical),2024-02-09
+54,Douglas,Reed,Finance,"Secretary, company",2016-12-10
+55,Gary,Stevens,HR,Commercial/residential surveyor,2017-07-13
+56,Margaret,Taylor,Marketing,Financial controller,2022-12-03
+57,Kimberly,Perkins,IT,Speech and language therapist,2020-03-03
+58,Anna,Morrison,Finance,"Scientist, marine",2018-03-16
+59,Jessica,Banks,Marketing,Chiropodist,2016-01-15
+60,Roberto,Allen,Marketing,Research scientist (maths),2015-07-26
+61,Brandon,Hawkins,Finance,Public affairs consultant,2024-02-04
+62,Stacy,Mitchell,HR,Nature conservation officer,2017-11-30
+63,Tyrone,Lang,HR,"Education officer, environmental",2025-01-25
+64,James,Warren,IT,"Development worker, community",2018-10-08
+65,Craig,Fleming,Marketing,Energy manager,2018-05-05
+66,John,Abbott,Sales,Quarry manager,2017-07-22
+67,James,Serrano,IT,Analytical chemist,2017-04-27
+68,Marissa,Griffin,Marketing,Press sub,2018-05-26
+69,Gary,Burton,Marketing,"Administrator, education",2017-09-11
+70,James,Welch,IT,"Therapist, music",2023-06-05
+71,Sabrina,Prince,HR,Building control surveyor,2019-02-08
+72,Michael,Parker,Sales,"Therapist, nutritional",2018-05-28
+73,Randy,Wheeler,Sales,"Teacher, secondary school",2022-01-21
+74,Craig,Huang,Finance,"Engineer, land",2024-06-06
+75,Randall,Heath,Finance,"Therapist, sports",2020-03-04
+76,Erica,Bailey,Sales,Energy manager,2022-04-24
+77,Michele,Miller,Sales,Television/film/video producer,2016-08-30
+78,Justin,Garcia,IT,Learning disability nurse,2017-06-29
+79,Jose,Torres,Sales,Printmaker,2021-09-16
+80,Devin,Scott,Sales,Medical laboratory scientific officer,2024-12-25
+81,Virginia,Hernandez,IT,"Psychologist, prison and probation services",2024-04-25
+82,Gregory,Franklin,Sales,Trade union research officer,2023-01-21
+83,Wesley,Snyder,Finance,"Administrator, Civil Service",2021-07-28
+84,Ryan,Clark,HR,Secretary/administrator,2023-08-15
+85,Alicia,Lang,Finance,Glass blower/designer,2019-11-05
+86,Cathy,Cook,Sales,Oceanographer,2022-05-31
+87,Stephen,Wagner,Sales,"Surveyor, rural practice",2023-09-30
+88,Earl,Harmon,IT,Maintenance engineer,2018-11-11
+89,Brenda,Byrd,HR,Administrator,2022-06-07
+90,Donna,Acosta,HR,Diagnostic radiographer,2018-10-07
+91,Nicholas,Sparks,Finance,Sports development officer,2018-11-15
+92,Adrian,Brown,IT,Commissioning editor,2024-11-26
+93,Aaron,Doyle,IT,Teaching laboratory technician,2023-04-29
+94,Shelley,Johnson,Marketing,Best boy,2020-12-17
+95,Jessica,Marsh,IT,Chemical engineer,2018-05-14
+96,Shelby,Scott,IT,Sports development officer,2018-12-17
+97,Taylor,Johnson,Marketing,Ranger/warden,2017-11-12
+98,Nicholas,Patterson,HR,"Conservation officer, historic buildings",2015-08-21
+99,Lawrence,Kim,Marketing,Estate agent,2015-03-17
+100,Christopher,Glass,HR,Agricultural consultant,2017-02-05

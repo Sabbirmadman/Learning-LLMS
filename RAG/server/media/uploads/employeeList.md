@@ -1,0 +1,13 @@
+**Employee List**
+- Alex Chen  
+- Alex Harper  
+- Alex Thomson  
+- Avery Lancaster  
+- Emily Carter  
+- Emily Tran  
+- Jordan Blake  
+- Jordan K. Bishop  
+- Maxine Thompson  
+- Oliver Spencer  
+- Samantha Greene  
+- Samuel Trenton  

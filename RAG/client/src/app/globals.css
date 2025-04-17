@@ -1,0 +1,49 @@
+/* Add this to your existing CSS file */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Add to your globals.css or appropriate style file */
+
+.markdown-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+.markdown-content code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  
+/* For math equations */
+.katex-display {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+/* For mobile tables */
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
+  }
+
+@media (min-width: 640px) {
+    .markdown-content table {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+    }
+  }
+
+/* Ensure content doesn't overflow on mobile */
+.markdown-content {
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.markdown-content * {
+    max-width: 100%;
+}
